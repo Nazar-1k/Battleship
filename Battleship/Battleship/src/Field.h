@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-using namespace sf;
 
 class Field
 {
@@ -11,8 +10,8 @@ public:
 	Field();
 
 private:
-	RectangleShape faield;
-	Color color;
+	sf::RectangleShape faield;
+	sf::Color color;
 
 	int x;
 	int y;

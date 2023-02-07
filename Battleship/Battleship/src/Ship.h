@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Field.h"
+
 class Ship : Field
 {
-	friend class Battlefield;
 public:
 
 	Ship();

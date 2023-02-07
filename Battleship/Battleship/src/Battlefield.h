@@ -2,10 +2,9 @@
 
 #include "Field.h"
 #include "Ship.h"
-#include <SFML/Graphics.hpp>
 
 #include "Window.h"
-using namespace sf;
+
 
 class Battlefield
 {
@@ -14,7 +13,7 @@ class Battlefield
 public:
 	
 	Battlefield();
-	Battlefield(float x, float y, String string);
+	Battlefield(float x, float y, sf::String string);
 
 	~Battlefield();
 
@@ -25,7 +24,7 @@ public:
 
 
 	//Set
-	void setFont(Font& font);
+	void setFont(sf::Font& font);
 
 	// Assign the number of ships to the text
 	void setStringcoutShip(int count1, int count2, int count3, int count4);
@@ -44,32 +43,32 @@ private:
 	float y;
 
 	//Text
-	Text* ABC;
-	Text* number;
+	sf::Text* ABC;
+	sf::Text* number;
 
-	Text namePlaer;
+	sf::Text namePlaer;
 
-	Text ShipType;
-	Text CountShip;
+	sf::Text ShipType;
+	sf::Text CountShip;
 
-	Text count1S_text;
-	Text count2S_text;
-	Text count3S_text;
-	Text count4S_text;
+	sf::Text count1S_text;
+	sf::Text count2S_text;
+	sf::Text count3S_text;
+	sf::Text count4S_text;
 
 	//Ñells on the field
 	Field** field;
 	Field** fieldMenu;
 
 	//BackGround 
-	RectangleShape battlefield;
+	sf::RectangleShape battlefield;
 
 
 	void initBattlefield(float x_, float y_);
 
 	void initField(float x_, float y_);
 	
-	void initeText(float x_, float y_, String string);
+	void initeText(float x_, float y_, sf::String string);
 	
 
 	void initeShipMenu(float x_, float y_);

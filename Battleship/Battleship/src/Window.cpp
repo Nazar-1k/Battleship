@@ -4,15 +4,16 @@
 GameWindow::GameWindow()
 {
 		//size window
-		VideoMode videoMode;
-		videoMode.height = 600;
-		videoMode.width = 1000;
+	sf::VideoMode videoMode;
+	videoMode.height = 600;
+	videoMode.width = 1000;
 
-		//name and setings window
-		this->window = new RenderWindow(videoMode, "Batle Ship", Style::Titlebar | Style::Close);
+	//name and setings window
+	this->window = new sf::RenderWindow(videoMode, "Batle Ship", sf::Style::Titlebar | sf::Style::Close);
 
-		batlefield = new Battlefield(40, 70, "Player");
-		batlefieldEnemy = new Battlefield(650, 70, "Enemy");
+	batlefield = new Battlefield(40, 70, "Player");
+	batlefieldEnemy = new Battlefield(650, 70, "Enemy");
+	menu = new Main_menu;
 }
 
 
@@ -22,12 +23,13 @@ GameWindow::~GameWindow()
 	delete window;
 	delete batlefield;
 	delete batlefieldEnemy;
+	delete menu;
 }
 
 
 void GameWindow::clearWindow()
 {
-	window->clear(Color(30, 30, 30));
+	window->clear(sf::Color(30, 30, 30));
 }
 
 void GameWindow::displayWindow()
@@ -61,10 +63,11 @@ void GameWindow::drawWindowObjects()
 	batlefield->drawBatlefield(*this);
 	batlefieldEnemy->drawBatlefield(*this);
 	//drow menu
+	menu->draw(*this);
+
 	/*Font arial;
 	arial.loadFromFile("fonts/arial.ttf");
 	window.serFont(arial);
 	window.drawSetStart();*/
 
 }
-

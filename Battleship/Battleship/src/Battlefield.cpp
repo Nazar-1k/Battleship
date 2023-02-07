@@ -10,7 +10,7 @@ Battlefield::Battlefield()
 }
 
 
-Battlefield::Battlefield(float x, float y, String string)
+Battlefield::Battlefield(float x, float y, sf::String string)
 	:x(x), y(y)
 {
 	initField(x, y);
@@ -42,7 +42,7 @@ void Battlefield::isMouseOver(GameWindow& w)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			if (field[i][j].faield.getGlobalBounds().contains(Mouse::getPosition(*w.window).x, Mouse::getPosition(*w.window).y))
+			if (field[i][j].faield.getGlobalBounds().contains(static_cast<float>(sf::Mouse::getPosition(*w.window).x), static_cast<float>(sf::Mouse::getPosition(*w.window).y)))
 			{
 				field[i][j].cursorIsGiven = true;
 			}
@@ -62,7 +62,7 @@ void Battlefield::setStringcoutShip(int count1, int count2, int count3, int coun
 
 
 //Set
-void Battlefield::setFont(Font& font)
+void Battlefield::setFont(sf::Font& font)
 {
 	namePlaer.setFont(font);
 
@@ -99,7 +99,7 @@ void Battlefield::setFont(Font& font)
 
 	/*updateShip();*/
 
-	Font arial;
+	sf::Font arial;
 	arial.loadFromFile("fonts/arial.ttf");
 
 	setStringcoutShip(0, 0, 0, 0);
@@ -141,17 +141,17 @@ void Battlefield::setFont(Font& font)
 
 			if (field[x][y].ship == true /*and count_ship < 22*/)
 			{
-				field[x][y].faield.setFillColor(Color(72, 61, 139));
+				field[x][y].faield.setFillColor(sf::Color(72, 61, 139));
 				
 			}
 			else if (field[x][y].cursorIsGiven == true)
-				field[x][y].faield.setFillColor(Color(90, 190, 255));
+				field[x][y].faield.setFillColor(sf::Color(90, 190, 255));
 			else 
-				field[x][y].faield.setFillColor(Color(64, 128, 160));
+				field[x][y].faield.setFillColor(sf::Color(64, 128, 160));
 
 			if (field[x][y].noShip == false)
 			{
-				field[x][y].faield.setFillColor(Color::Red);
+				field[x][y].faield.setFillColor(sf::Color::Red);
 			}
 		}
 	}
@@ -175,7 +175,7 @@ void Battlefield::setFont(Font& font)
 	 this->y = y;
 	 battlefield.setSize({ 322,322 });
 	 battlefield.setPosition({ x, y });
-	 battlefield.setFillColor(Color::White);
+	 battlefield.setFillColor(sf::Color::White);
 
  }
 
@@ -206,43 +206,43 @@ void Battlefield::setFont(Font& font)
 	 }
  }
 
- void Battlefield::initeText(float x, float y, String string)
+ void Battlefield::initeText(float x, float y, sf::String string)
  {
-	 count1S_text.setFillColor(Color::White);
+	 count1S_text.setFillColor(sf::Color::White);
 	 count1S_text.setCharacterSize(30);
 	 count1S_text.setPosition({ x + 230, y + 485 });
 
-	 count2S_text.setFillColor(Color::White);
+	 count2S_text.setFillColor(sf::Color::White);
 	 count2S_text.setCharacterSize(30);
 	 count2S_text.setPosition({ x + 230, y + 445 });
 
-	 count3S_text.setFillColor(Color::White);
+	 count3S_text.setFillColor(sf::Color::White);
 	 count3S_text.setCharacterSize(30);
 	 count3S_text.setPosition({ x + 230, y + 405 });
 
-	 count4S_text.setFillColor(Color::White);
+	 count4S_text.setFillColor(sf::Color::White);
 	 count4S_text.setCharacterSize(30);
 	 count4S_text.setPosition({ x + 230, y + 365 });
 
 
-	 namePlaer.setFillColor(Color(90, 190, 255));
+	 namePlaer.setFillColor(sf::Color(90, 190, 255));
 	 namePlaer.setCharacterSize(30);
 	 namePlaer.setString(string);
 	 namePlaer.setPosition({ x + 115, y - 70 });
 
-	 ShipType.setFillColor(Color::White);
+	 ShipType.setFillColor(sf::Color::White);
 	 ShipType.setCharacterSize(20);
 	 ShipType.setString("Ship Type:");
 	 ShipType.setPosition({ x + 20, y + 330 });
 
-	 CountShip.setFillColor(Color::White);
+	 CountShip.setFillColor(sf::Color::White);
 	 CountShip.setCharacterSize(20);
 	 CountShip.setString("Count Ship:");
 	 CountShip.setPosition({ x + 190, y + 330 });
 
 	 //batlefield
-	 ABC = new Text[11];
-	 number =  new Text[11];
+	 ABC = new sf::Text[11];
+	 number =  new sf::Text[11];
 
 	 int nuber = 1;
 	 char abc = 'A';
@@ -253,7 +253,7 @@ void Battlefield::setFont(Font& font)
 	 {
 		 /*std::cout << nuber << " " << abc << "  ";*/
 
-		 ABC[i].setFillColor(Color(90, 190, 255));
+		 ABC[i].setFillColor(sf::Color(90, 190, 255));
 		 ABC[i].setCharacterSize(20);
 		 ABC[i].setString(abc);
 		 if (i == 9)
@@ -263,7 +263,7 @@ void Battlefield::setFont(Font& font)
 
 
 		 number[i].setString(std::to_string(nuber));
-		 number[i].setFillColor(Color(90, 190, 255));
+		 number[i].setFillColor(sf::Color(90, 190, 255));
 		 number[i].setCharacterSize(20);
 
 		 if (i == 10)

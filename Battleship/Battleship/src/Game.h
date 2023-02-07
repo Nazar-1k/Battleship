@@ -1,7 +1,6 @@
 #pragma once
-#include "Battlefield.h"
+#include "Window.h"
 
-using namespace sf;
 
 
 class Game

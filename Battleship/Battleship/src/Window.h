@@ -1,16 +1,15 @@
 #pragma once
 
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include "Battlefield.h"
-
-using namespace sf;
-
+#include "Main_menu.h"
 
 class GameWindow
 {
 	friend class Battlefield;
+	friend class Main_menu;
 public:
+	
 	
 	GameWindow();
 
@@ -27,11 +26,14 @@ public:
 	void drawWindowObjects();
 
 private:
-	RenderWindow* window;
+	sf::RenderWindow* window;
 	
-	Event event;
+	sf::Event event;
 
 	Battlefield* batlefield ;
 	Battlefield* batlefieldEnemy;
+	Main_menu* menu;
+
 	
 };
+

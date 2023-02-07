@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Main_menu.cpp" />
     <ClCompile Include="src\Battlefield.cpp" />
     <ClCompile Include="src\Field.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -168,6 +169,7 @@
     <Font Include="fonts\arial.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Main_menu.h" />
     <ClInclude Include="src\Battlefield.h" />
     <ClInclude Include="src\Field.h" />
     <ClInclude Include="src\Game.h" />
