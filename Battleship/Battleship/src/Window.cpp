@@ -49,7 +49,7 @@ void GameWindow::pollEventWindow()
 		if (event.type == sf::Event::Closed)
 			window->close();
 
-
+		menu->clickEvent(*this);
 		//Ather event
 		/*batlefield->clickEvent(*this);*/
 
