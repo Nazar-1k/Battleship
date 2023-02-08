@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Main_menu.cpp" />
     <ClCompile Include="src\Battlefield.cpp" />
     <ClCompile Include="src\Field.cpp" />
@@ -169,6 +170,7 @@
     <Font Include="fonts\arial.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\Main_menu.h" />
     <ClInclude Include="src\Battlefield.h" />
     <ClInclude Include="src\Field.h" />
