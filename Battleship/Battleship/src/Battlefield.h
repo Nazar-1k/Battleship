@@ -31,11 +31,14 @@ public:
 
 	void drawBatlefield(GameWindow& w);
 	
-	/*void clickEvent(GameWindow& w);*/
+	void clickEvent(GameWindow& w);
 
-	//void creatShip(int i, int j);
+	//updating boats when you put them on the field
+	void ubdateSetShip();
 
-	//void updateShip();
+	void ubdateShip1(Ship& ship);
+
+	
 		
 private:
 
@@ -62,6 +65,21 @@ private:
 
 	//BackGround 
 	sf::RectangleShape battlefield;
+
+	Ship ship1_1;
+	Ship ship1_2;
+	Ship ship1_3;
+	Ship ship1_4;
+	Ship ship1_5;
+	Ship ship1_6;
+	Ship ship1_7;
+	Ship ship1_8;
+	Ship ship1_9;
+	Ship ship1_10;
+	Ship ship1_11;
+	Ship ship1_12;
+	Ship ship1_13;
+
 
 
 	void initBattlefield(float x_, float y_);

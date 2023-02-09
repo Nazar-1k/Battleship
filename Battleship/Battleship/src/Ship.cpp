@@ -1,54 +1,72 @@
 #include "Ship.h"
 
-
-
 Ship::Ship()
+	:x(-1), y(-1), verticalShip(false), count_deck(1), show(true)
+{ }
+
+void Ship::setx(int x)
 {
-	this->i = -1;
-	this->j = -1;
-	this->verticalShip = false;
+	this->x = x;
 }
 
-Ship::Ship(int i, int j, bool verticalShip)
+void Ship::sety(int y)
 {
-	this->i = i;
-	this->j = j;
+	this->y = y;
+}
+
+void Ship::setCount_deck(int count_deck)
+{
+	this->count_deck = count_deck;
+}
+
+void Ship::setVerticalShip(bool verticalShip)
+{
 	this->verticalShip = verticalShip;
 }
 
-void Ship::unsetShip(int& count)
+void Ship::setShow(bool show)
 {
-	this->i = -1;
-	this->j = -1;
-	count--;
+	this->show = show;
 }
 
-void Ship::unsetShip(int& count,int n)
+void Ship::creatShip(int x, int y, bool verticalShip, int count_deck)
 {
-	this->i = -1;
-	this->j = -1;
-	count-=n;
-}
-
-void Ship::unsetShip()
-{
-	this->i = -1;
-	this->j = -1;
-}
-
-void Ship::ubdatecoord(int i, int j, bool verticalShip)
-{
-	this->i = i;
-	this->j = j;
-	this->verticalShip = verticalShip;
-}
-
-void Ship::createShip(int i, int j, bool verticalShip, int count_deck)
-{
-	this->i = i;
-	this->j = j;
+	this->x = x;
+	this->y = y;
 	this->verticalShip = verticalShip;
 	this->count_deck = count_deck;
 }
 
+
+void Ship::set_CountShip(int count)
+{
+	Ship::count_ship = count;
+}
+
+void Ship::set_CountShip_1(int count)
+{
+	Ship::count_ship_1 = count;
+}
+
+void Ship::set_CountShip_2(int count)
+{
+	Ship::count_ship_2 = count;
+}
+
+void Ship::set_CountShip_3(int count)
+{
+	Ship::count_ship_3 = count;
+}
+
+void Ship::set_CountShip_4(int count)
+{
+	Ship::count_ship_4 = count;
+}
+
+
+int Ship::count_ship;
+int Ship::count_ship_1;
+int Ship::count_ship_2;
+int Ship::count_ship_3;
+int Ship::count_ship_4;
 

@@ -310,6 +310,4 @@ void Main_menu::draw(GameWindow& w)
 #pragma endregion
 
 }
-
 int Main_menu::menu_type;
-

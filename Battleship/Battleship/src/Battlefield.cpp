@@ -59,8 +59,6 @@ void Battlefield::setStringcoutShip(int count1, int count2, int count3, int coun
 	count4S_text.setString(std::to_string(count4));
 }
 
-
-
 //Set
 void Battlefield::setFont(sf::Font& font)
 {
@@ -83,28 +81,15 @@ void Battlefield::setFont(sf::Font& font)
 }
 
 
-// Присвоїти надписам кількість кораблів 
-
-
-
-///////????
-//void Battlefield::updateShip()
-//{
-//	
-//}
-
-
  void Battlefield::drawBatlefield(GameWindow& w)
 {
 
-	/*updateShip();*/
+	 ubdateSetShip();
 
 	sf::Font arial;
 	arial.loadFromFile("fonts/arial.ttf");
 
-	setStringcoutShip(0, 0, 0, 0);
-	/*setStringcoutShip(count1Ship, count2Ship, count3Ship, count4Ship);*/
-
+	setStringcoutShip(Ship::get_CountShip_1(), Ship::get_CountShip_2(), Ship::get_CountShip_3(), Ship::get_CountShip_4());
 
 	//Bground 
 	isMouseOver(w);
@@ -134,29 +119,29 @@ void Battlefield::setFont(sf::Font& font)
 
 		for (int y = 0; y < 10; y++)
 		{
-			//намалювати Поле квадратиків
+			//draw a Field of squares
 			w.window->draw(field[x][y].faield);
 
-			
-
-			if (field[x][y].ship == true /*and count_ship < 22*/)
-			{
-				field[x][y].faield.setFillColor(sf::Color(72, 61, 139));
-				
-			}
-			else if (field[x][y].cursorIsGiven == true)
+			//Hover
+			if (field[x][y].cursorIsGiven == true)
 				field[x][y].faield.setFillColor(sf::Color(90, 190, 255));
 			else 
 				field[x][y].faield.setFillColor(sf::Color(64, 128, 160));
+			
+			//color ship
+			if (field[x][y].ship == true)
+				field[x][y].faield.setFillColor(sf::Color(72, 61, 139));
+				
 
-			if (field[x][y].noShip == false)
+			//color noship zone
+			else if (field[x][y].noShip == false)
 			{
-				field[x][y].faield.setFillColor(sf::Color::Red);
+				field[x][y].faield.setFillColor(sf::Color(20, 100, 190));
 			}
 		}
 	}
 
-	// Намалювати меню кількості кораблів
+	// Draw the number of ships menu
 	int count = 4;
 	for (int i = 0; i < 4; i++)
 	{
@@ -167,7 +152,6 @@ void Battlefield::setFont(sf::Font& font)
 		count--;
 	}
 }
-
 
  void Battlefield::initBattlefield(float x, float y)
  {
@@ -303,4 +287,88 @@ void Battlefield::setFont(sf::Font& font)
 		 y += 40;
 		 x = this->x;
 	 }
+ }
+
+ void Battlefield::clickEvent(GameWindow& w)
+ {
+	 
+	 if (w.event.type == sf::Event::MouseButtonReleased)
+	 {
+		 for (int x = 0; x < 10; x++)
+		 {
+			 for (int y = 0; y < 10; y++)
+			 {
+				 if (field[x][y].cursorIsGiven == true and Ship::get_CountShip() < 20 and field[x][y].noShip == true and field[x][y].ship == false)
+				 {
+					 field[x][y].ship = true;
+					 Ship::set_CountShip(Ship::get_CountShip() + 1);
+					 
+					//добавлення човна
+					
+
+
+
+
+
+					 std::cout << Ship::get_CountShip();
+				 }
+			 }
+		 }
+	 }
+ }
+
+ void Battlefield::ubdateSetShip()
+ {
+	
+ }
+
+ void Battlefield::ubdateShip1(Ship& ship)
+ {
+	 for (int x = 0; x < 10; x++)
+	 {
+		 for (int y = 0; y < 10; y++)
+		 {
+			#pragma region Prohibition_to_place_boats_diagonally
+			 //Prohibition to place boats diagonally
+			 if (ship.getx() == 0 and ship.gety() == 0)//upper right corner
+			 {
+				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+			 }
+			 else if (ship.getx() == 0 and ship.gety() == 9)//upper left corner
+			 {
+				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+			 }
+			 else if (ship.getx() == 9 and ship.gety() == 0)//lower right corner
+			 {
+				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+			 }
+			 else if (ship.getx() == 9 and ship.gety() == 9)//lower left corner
+			 {
+				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+			 }
+			 else if (ship.getx() == 0)
+			 {
+				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+			 }
+			 else if (ship.getx() == 9)
+			 {
+				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+			 }
+			 else
+			 {
+				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+
+				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+
+				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+
+				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+			 }
+#pragma endregion
+
+		 }
+	 }
+
  }

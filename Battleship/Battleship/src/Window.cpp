@@ -51,9 +51,8 @@ void GameWindow::pollEventWindow()
 
 		menu->clickEvent(*this);
 		//Ather event
-		/*batlefield->clickEvent(*this);*/
+		batlefield->clickEvent(*this);
 
-	/*	batlefield->clickEvent_(*this);*/
 	}
 }
 
