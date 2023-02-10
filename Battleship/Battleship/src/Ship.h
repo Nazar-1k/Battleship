@@ -45,6 +45,13 @@ public:
 
 	bool ship_exist();
 
+	static void delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3, Ship& ship4, Ship& ship5, Ship& ship6, Ship& ship7, Ship& ship8, Ship& ship9, Ship& ship10, Ship& ship11, Ship& ship12, Ship& ship13);
+
+	static void delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3, Ship& ship4, Ship& ship5, Ship& ship6);
+
+	static void delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3);
+
+
 private:
 	int x;
 	int y;
@@ -60,4 +67,8 @@ private:
 	static int count_ship_2;
 	static int count_ship_3;
 	static int count_ship_4;
+
+
+	bool ship_x_y(int x, int y);
+	void deleteShip();
 };

@@ -80,6 +80,19 @@ private:
 	Ship ship1_12;
 	Ship ship1_13;
 
+	Ship ship2_1;
+	Ship ship2_2;
+	Ship ship2_3;
+	Ship ship2_4;
+	Ship ship2_5;
+	Ship ship2_6;
+
+	Ship ship3_1;
+	Ship ship3_2;
+	Ship ship3_3;
+
+	Ship ship4;
+
 
 
 	void initBattlefield(float x_, float y_);
