@@ -2,6 +2,7 @@
 
 #include "Field.h"
 
+
 class Ship : Field
 {
 public:
@@ -37,6 +38,12 @@ public:
 	static void set_CountShip_3(int count);
 	static void set_CountShip_4(int count);
 
+
+	void moveShip(Ship& ship);
+
+	void Ship_info();
+
+	bool ship_exist();
 
 private:
 	int x;

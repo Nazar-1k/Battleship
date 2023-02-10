@@ -1,4 +1,5 @@
 #include "Ship.h"
+#include <iostream>
 
 Ship::Ship()
 	:x(-1), y(-1), verticalShip(false), count_deck(1), show(true)
@@ -61,6 +62,34 @@ void Ship::set_CountShip_3(int count)
 void Ship::set_CountShip_4(int count)
 {
 	Ship::count_ship_4 = count;
+}
+
+void Ship::moveShip(Ship& ship)
+{
+	this->x = ship.x;
+	this->y = ship.y;
+
+	this->count_deck = ship.count_deck;
+
+	this-> verticalShip = ship.verticalShip;
+	this-> show = ship.show;
+}
+
+void Ship::Ship_info()
+{
+	std::cout << "x ->\t" << x << std::endl;
+	std::cout << "y ->\t" << y << std::endl;
+	std::cout << "count_deck ->\t" << count_deck << std::endl;
+	std::cout << "verticalShip ->\t" << verticalShip << std::endl;
+	std::cout << "show ->\t" << show << std::endl;
+}
+
+bool Ship::ship_exist()
+{
+	if(x == -1 or y == -1)
+		return false;
+
+	return true;
 }
 
 

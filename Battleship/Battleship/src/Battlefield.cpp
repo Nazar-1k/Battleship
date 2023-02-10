@@ -85,6 +85,7 @@ void Battlefield::setFont(sf::Font& font)
 {
 
 	 ubdateSetShip();
+	 ubdateShip1(ship1_1);
 
 	sf::Font arial;
 	arial.loadFromFile("fonts/arial.ttf");
@@ -303,14 +304,99 @@ void Battlefield::setFont(sf::Font& font)
 					 field[x][y].ship = true;
 					 Ship::set_CountShip(Ship::get_CountShip() + 1);
 					 
-					//добавлення човна
+					 #pragma region Add_Ship
 					
+					 //adding 4 deck horizontally
+					 if ((x <= 6 and field[x][y].ship == true and field[x + 1][y].ship == true and field[x + 2][y].ship == true and field[x + 3][y].ship == true)
+						 or (x >= 3 and field[x][y].ship == true and field[x - 1][y].ship == true and field[x - 2][y].ship == true and field[x - 3][y].ship == true)
+						 or (x >= 1 and x <= 7 and field[x][y].ship == true and field[x - 1][y].ship == true and field[x + 1][y].ship == true and field[x + 2][y].ship == true)
+						 or (x >= 2 and x <= 8 and field[x][y].ship == true and field[x - 1][y].ship == true and field[x - 2][y].ship == true and field[x + 1][y].ship == true) 
+						 and Ship::get_CountShip_4() < 1)
+					 {
+						 std::cout << "Creat 4 Ship novertical" << std::endl;
+						
+					 }
+					 //adding 3 deck horizontally
+					 else if ((x >= 2 and field[x][y].ship == true and field[x - 1][y].ship == true and field[x - 2][y].ship == true)
+						 or (x <= 7 and field[x][y].ship == true and field[x + 1][y].ship == true and field[x + 2][y].ship == true)
+						 or (x >= 1 and x <= 8 and field[x][y].ship == true and field[x - 1][y].ship == true and field[x + 1][y].ship == true) and Ship::get_CountShip_3() < 4)
+					 {
+						 std::cout << "Creat 3 Ship novertical" << std::endl;
+						
+					 }
+					 //adding 2 deck horizontally
+					 else if ((x <= 8 and field[x][y].ship == true and field[x + 1][y].ship == true) or
+						 (x >= 1 and field[x][y].ship == true and field[x - 1][y].ship == true) and Ship::get_CountShip_2() < 6)
+					 {
+					 std::cout << "Creat 2 Ship novertical" << std::endl;
+						
+					 }
+					 //adding 4 deck vertically
+					 else if ((y <= 6 and field[x][y].ship == true and field[x][y + 1].ship == true and field[x][y + 2].ship == true and field[x][y + 3].ship == true)
+						 or (y >= 3 and field[x][y].ship == true and field[x][y - 1].ship == true and field[x][y - 2].ship == true and field[x][y - 3].ship == true)
+						 or (y >= 1 and y <= 7 and field[x][y].ship == true and field[x][y - 1].ship == true and field[x][y + 1].ship == true and field[x][y + 2].ship == true)
+						 or (y >= 2 and y <= 8 and field[x][y].ship == true and field[x][y - 1].ship == true and field[x][y - 2].ship == true and field[x][y + 1].ship == true) and Ship::get_CountShip_4() < 1)
+					 {
+						std::cout << "Creat 4 Ship vertical" << std::endl;
+						 /*if (j <= 6 and batlefield.field[i][j].ship == true and batlefield.field[i][j + 1].ship == true and batlefield.field[i][j + 2].ship == true and batlefield.field[i][j + 3].ship == true)
+						 {
+
+							 batlefield.iShip4 = i;
+							 batlefield.jShip4 = j;
+						 }
+						 else if (j >= 3 and batlefield.field[i][j].ship == true and batlefield.field[i][j - 1].ship == true and batlefield.field[i][j - 2].ship == true and batlefield.field[i][j - 3].ship == true)
+						 {
+
+							 batlefield.iShip4 = i;
+							 batlefield.jShip4 = j - 3;
+						 }
+						 else if (j >= 1 and j <= 7 and batlefield.field[i][j].ship == true and batlefield.field[i][j - 1].ship == true and batlefield.field[i][j + 1].ship == true and batlefield.field[i][j + 2].ship == true)
+						 {
+
+							 batlefield.iShip4 = i;
+							 batlefield.jShip4 = j - 1;
+						 }
+						 else if (j >= 2 and j <= 8 and batlefield.field[i][j].ship == true and batlefield.field[i][j - 1].ship == true and batlefield.field[i][j - 2].ship == true and batlefield.field[i][j + 1].ship == true)
+						 {
+
+							 batlefield.iShip4 = i;
+							 batlefield.jShip4 = j - 2;
+						 }
+						 batlefield.Ship4Y = true;
+						 batlefield.count4Ship_all++;
+						 if3ShipY(batlefield.iShip4, batlefield.jShip4);*/
+					 }
+
+					 //adding 3 deck vertically
+					 else if ((y >= 2 and field[x][y].ship == true and field[x][y - 1].ship == true and field[x][y - 2].ship == true)
+						 or (y <= 7 and field[x][y].ship == true and field[x][y + 1].ship == true and field[x][y + 2].ship == true)
+						 or (y >= 1 and y <= 8 and field[x][y].ship == true and field[x][y - 1].ship == true and field[x][y + 1].ship == true) and Ship::get_CountShip_3() < 3)
+					 {
+						 std::cout << "Creat 3 Ship vertical" << std::endl;
+						
+					 }
+
+					 //adding 2 deck vertically
+					 else if ((y <= 8 and field[x][y].ship == true and field[x][y + 1].ship == true) or
+						 (y >= 1      and field[x][y].ship == true and field[x][y - 1].ship == true) and Ship::get_CountShip_2() < 6)
+					 {
+						std::cout << "Creat 2 Ship vertical" << std::endl;
+						
+					 }
+					 //adding 1 deck
+					 else if (field[x][y].ship == true /*and Ship::get_CountShip_1() <= 10*/)
+					 {
+						std::cout << "Creat 1 Ship " << std::endl;
+						ship1_1.creatShip(x, y, true, 1);
+						ship1_1.Ship_info();
+
+						
+					 }
+					#pragma endregion
 
 
 
-
-
-					 std::cout << Ship::get_CountShip();
+					 std::cout << Ship::get_CountShip() << std::endl;
 				 }
 			 }
 		 }
@@ -319,56 +405,102 @@ void Battlefield::setFont(sf::Font& font)
 
  void Battlefield::ubdateSetShip()
  {
-	
- }
-
- void Battlefield::ubdateShip1(Ship& ship)
- {
 	 for (int x = 0; x < 10; x++)
 	 {
 		 for (int y = 0; y < 10; y++)
 		 {
-			#pragma region Prohibition_to_place_boats_diagonally
+#pragma region Prohibition_to_place_boats_diagonally
 			 //Prohibition to place boats diagonally
-			 if (ship.getx() == 0 and ship.gety() == 0)//upper right corner
+			 if (field[0][0].ship == true)//upper right corner
 			 {
-				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+				 field[x + 1][y + 1].noShip = false;
 			 }
-			 else if (ship.getx() == 0 and ship.gety() == 9)//upper left corner
+			 else if (field[0][9].ship == true)//upper left corner
 			 {
-				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+				 field[x + 1][y - 1].noShip = false;
 			 }
-			 else if (ship.getx() == 9 and ship.gety() == 0)//lower right corner
+			 else if (field[9][0].ship == true)//lower right corner
 			 {
-				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+				 field[x - 1][y + 1].noShip = false;
 			 }
-			 else if (ship.getx() == 9 and ship.gety() == 9)//lower left corner
+			 else if (field[9][9].ship == true)//lower left corner
 			 {
-				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+				 field[x - 1][y - 1].noShip = false;
 			 }
-			 else if (ship.getx() == 0)
+			 else if (field[0][y].ship == true)
 			 {
-				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
-				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+				 field[x + 1][y + 1].noShip = false;
+				 field[x + 1][y - 1].noShip = false;
 			 }
-			 else if (ship.getx() == 9)
+			 else if (field[9][y].ship == true)
 			 {
-				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
-				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+				 field[x - 1][y - 1].noShip = false;
+				 field[x - 1][y + 1].noShip = false;
 			 }
-			 else
+			 else if(field[x][y].ship == true)
 			 {
-				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+				 field[x + 1][y + 1].noShip = false;
 
-				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+				 field[x - 1][y - 1].noShip = false;
 
-				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+				 field[x + 1][y - 1].noShip = false;
 
-				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+				 field[x - 1][y + 1].noShip = false;
 			 }
 #pragma endregion
 
 		 }
 	 }
+ }
+
+ void Battlefield::ubdateShip1(Ship& ship)
+ {
+	// if(ship.ship_exist())
+	//	 for (int x = 0; x < 10; x++)
+	//	 {
+	//		 for (int y = 0; y < 10; y++)
+	//		 {
+	//			#pragma region Prohibition_to_place_boats_diagonally
+	//			 //Prohibition to place boats diagonally
+	//			 if (ship.getx() == 0 and ship.gety() == 0)//upper right corner
+	//			 {
+	//				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+	//			 }
+	//			 else if (ship.getx() == 0 and ship.gety() == 9)//upper left corner
+	//			 {
+	//				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+	//			 }
+	//			 else if (ship.getx() == 9 and ship.gety() == 0)//lower right corner
+	//			 {
+	//				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+	//			 }
+	//			 else if (ship.getx() == 9 and ship.gety() == 9)//lower left corner
+	//			 {
+	//				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+	//			 }
+	//			 else if (ship.getx() == 0)
+	//			 {
+	//				 field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+	//				 field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+	//			 }
+	//			 else if (ship.getx() == 9)
+	//			 {
+	//				 field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+	//				 field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+	//			 }
+	//			 else
+	//			 {
+	//				field[ship.getx() + 1][ship.gety() + 1].noShip = false;
+
+	//				field[ship.getx() - 1][ship.gety() - 1].noShip = false;
+
+	//				field[ship.getx() + 1][ship.gety() - 1].noShip = false;
+
+	//				field[ship.getx() - 1][ship.gety() + 1].noShip = false;
+	//			 }
+	//#pragma endregion
+
+	//		 }
+	//	 }
 
  }
