@@ -1,7 +1,7 @@
 #include "Battlefield.h"
 
 Battlefield::Battlefield()
-	:x(0), y(0), count_field(0)
+	:x(0), y(0), count_field(0), enemy(enemy)
 {
 	initField(x, y);
 	initBattlefield(x - 2, y - 2);
@@ -9,8 +9,8 @@ Battlefield::Battlefield()
 	initeShipMenu(x, y);
 }
 
-Battlefield::Battlefield(float x, float y, sf::String string)
-	:x(x), y(y), count_field(0)
+Battlefield::Battlefield(float x, float y, sf::String string, bool enemy)
+	:x(x), y(y), count_field(0), enemy(enemy)
 {
 	initField(x, y);
 	initBattlefield(x - 2, y - 2);
@@ -81,14 +81,45 @@ void Battlefield::setFont(sf::Font& font)
 
 void Battlefield::drawBatlefield(GameWindow& w)
 {
-
-	ubdateSetShip();
-	ubdateShip1(ship1_1);
-
 	sf::Font arial;
 	arial.loadFromFile("fonts/arial.ttf");
 
+	if (!enemy)
+	{
+	ubdateSetShip();
 	setStringcoutShip(Ship::get_CountShip_1(), Ship::get_CountShip_2(), Ship::get_CountShip_3(), Ship::get_CountShip_4());
+
+	}
+	else
+	{
+		ship1_1.setShow(false);
+		ship1_2.setShow(false);
+		ship1_3.setShow(false);
+		ship1_4.setShow(false);
+		ship1_5.setShow(false);
+		ship1_6.setShow(false);
+		ship1_7.setShow(false);
+		ship1_8.setShow(false);
+		ship1_9.setShow(false);
+		ship1_1.setShow(false);
+		ship1_11.setShow(false);
+		ship1_12.setShow(false);
+		ship1_13.setShow(false);
+
+		ship2_1.setShow(false);
+		ship2_2.setShow(false);
+		ship2_3.setShow(false);
+		ship2_4.setShow(false);
+		ship2_5.setShow(false);
+		ship2_6.setShow(false);
+
+		ship3_1.setShow(false);
+		ship3_2.setShow(false);
+		ship3_3.setShow(false);
+
+		ship4.setShow(false);
+		setStringcoutShip(4, 3, 2, 1);
+	}
 
 	//Bground 
 	isMouseOver(w);
@@ -126,17 +157,20 @@ void Battlefield::drawBatlefield(GameWindow& w)
 				field[x][y].faield.setFillColor(sf::Color(90, 190, 255));
 			else
 				field[x][y].faield.setFillColor(sf::Color(64, 128, 160));
-
-			//color ship
-			if (field[x][y].ship == true)
-				field[x][y].faield.setFillColor(sf::Color(72, 61, 139));
-
-
-			//color noship zone
-			else if (field[x][y].noShip == false)
+			if (ship1_1.getShow())
 			{
-				field[x][y].faield.setFillColor(sf::Color(20, 100, 190));
+				//color ship
+				if (field[x][y].ship == true)
+					field[x][y].faield.setFillColor(sf::Color(72, 61, 139));
+
+
+				//color noship zone
+				else if (field[x][y].noShip == false)
+				{
+					field[x][y].faield.setFillColor(sf::Color(20, 100, 190));
+				}
 			}
+			
 		}
 	}
 
@@ -292,16 +326,81 @@ void Battlefield::clickEvent(GameWindow& w)
 {
 	if (w.event.type == sf::Event::MouseButtonReleased)
 	{
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		for (int x = 0; x < 10; x++)
 		{
 			for (int y = 0; y < 10; y++)
 			{
 				if (field[x][y].cursorIsGiven == true and count_field < 20 and field[x][y].noShip == true and field[x][y].ship == false)
 				{
-					field[x][y].ship = true;
-					count_field++;
-					/*std::cout << "Count ship = "<<Ship::get_CountShip() << std::endl;*/
+						field[x][y].ship = true;
+						count_field++;
+
+					/*if (Ship::get_CountShip() < 10)
+					{
+					}
+					else if (Ship::get_CountShip() == 10)
+					{
+						if (Ship::get_CountShip_1() == 10)
+						{
+							
+							if (ship1_1.if_count_ship1_(x, y))
+								field[x][y].ship = true;
+							else if (ship1_1.if_count_ship1_(y, x))
+								field[x][y].ship = true;
+
+							if (ship1_2.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_2.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_3.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_3.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_4.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_4.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_5.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_5.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_6.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_6.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_7.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_7.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_8.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_8.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_9.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_9.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+
+							if (ship1_10.if_count_ship1_(x, y))
+								field[x][y].ship = false;
+							else if (ship1_10.if_count_ship1_(y, x))
+								field[x][y].ship = false;
+						
+						}
+					}
+
+					if (Ship::get_CountShip_2() == 6 )
+					{
+
+					}
+					*/
 
 					#pragma region All_options_for_creating_ship
 										//All_options_for_creating_ship 
@@ -440,11 +539,13 @@ void Battlefield::clickEvent(GameWindow& w)
 						if (first_option_creat_4_deck_ship_horizontally or fourth_option_creat_4_deck_ship_horizontally)
 						{
 							Ship::set_CountShip_3(Ship::get_CountShip_3() - 1);
+							Ship::set_CountShip(Ship::get_CountShip() - 1);
 						}
 						else if (second_option_creat_4_deck_ship_horizontally or third_option_creat_4_deck_ship_horizontally)
 						{
 							Ship::set_CountShip_1(Ship::get_CountShip_1() - 1);
 							Ship::set_CountShip_2(Ship::get_CountShip_2() - 1);
+							Ship::set_CountShip(Ship::get_CountShip() - 2);
 						}
 					#pragma endregion
 
@@ -502,10 +603,12 @@ void Battlefield::clickEvent(GameWindow& w)
 						if (first_option_creat_3_deck_ship_horizontally or third_option_creat_3_deck_ship_horizontally)
 						{
 							Ship::set_CountShip_2(Ship::get_CountShip_2() - 1);
+							Ship::set_CountShip(Ship::get_CountShip() - 1);
 						}
 						else if (second_option_creat_3_deck_ship_horizontally)
 						{
 							Ship::set_CountShip_1(Ship::get_CountShip_1() - 2);
+							Ship::set_CountShip(Ship::get_CountShip() - 2);
 						}
 
 						#pragma endregion
@@ -566,6 +669,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						#pragma region subtract_number_from_the_removed_boats
 						
 						Ship::set_CountShip_1(Ship::get_CountShip_1() - 1);
+						Ship::set_CountShip(Ship::get_CountShip() - 1);
 
 						#pragma endregion
 
@@ -646,11 +750,13 @@ void Battlefield::clickEvent(GameWindow& w)
 						if (first_option_creat_4_deck_ship_vertically or second_option_creat_4_deck_ship_vertically)
 						{
 							Ship::set_CountShip_3(Ship::get_CountShip_3() - 1);
+							Ship::set_CountShip(Ship::get_CountShip() - 1);
 						}
 						else if (third_option_creat_4_deck_ship_vertically or fourth_option_creat_4_deck_ship_vertically)
 						{
 							Ship::set_CountShip_1(Ship::get_CountShip_1() - 1);
 							Ship::set_CountShip_2(Ship::get_CountShip_2() - 1);
+							Ship::set_CountShip(Ship::get_CountShip() - 2);
 						}
 						#pragma endregion
 						
@@ -705,10 +811,12 @@ void Battlefield::clickEvent(GameWindow& w)
 						if (first_option_creat_3_deck_ship_vertically or second_option_creat_3_deck_ship_vertically)
 						{
 							Ship::set_CountShip_2(Ship::get_CountShip_2() - 1);
+							Ship::set_CountShip(Ship::get_CountShip() - 1);
 						}
 						else if (third_option_creat_3_deck_ship_vertically)
 						{
 							Ship::set_CountShip_1(Ship::get_CountShip_1() - 2);
+							Ship::set_CountShip(Ship::get_CountShip() - 2);
 						}
 						#pragma endregion
 
@@ -766,6 +874,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						#pragma region subtract_number_from_the_removed_boats
 
 						Ship::set_CountShip_1(Ship::get_CountShip_1() - 1);
+						Ship::set_CountShip(Ship::get_CountShip() - 1);
 						
 						#pragma endregion
 
@@ -893,7 +1002,6 @@ void Battlefield::clickEvent(GameWindow& w)
 
 void Battlefield::ubdateSetShip()
 {
-	ship4.Ship_info();
 	for (int x = 0; x < 10; x++)
 	{
 		for (int y = 0; y < 10; y++)
@@ -937,9 +1045,9 @@ void Battlefield::ubdateSetShip()
 				field[x - 1][y + 1].noShip = false;
 			}
 			#pragma endregion
+
 		}
 	}
-	
 	if (Ship::get_CountShip_4() == 1)
 	{
 		#pragma region 4_ship
@@ -958,7 +1066,7 @@ void Battlefield::ubdateSetShip()
 		}
 		else 
 		{
-			if (ship4.gety() > 1)
+			if (ship4.gety() > 0)
 				field[ship4.getx()][ship4.gety() - 1].noShip = false;
 
 			if (ship4.gety() < 6 and ship4.gety() >= 0)
@@ -968,14 +1076,16 @@ void Battlefield::ubdateSetShip()
 	
 		#pragma region 3_ship
 
+
+		
+
 		if (ship3_1.getVerticalShip())
 		{
-			if (ship3_1.getx() > 1)
+			if (ship3_1.getx() > 0)
 			{
 				field[ship3_1.getx() - 1][ship3_1.gety()].noShip = false;
-
 			}
-			if (ship3_1.getx() < 5 and ship3_1.getx() > 0)
+			if (ship3_1.getx() < 7 and ship3_1.getx() >= 0)
 			{
 				field[ship3_1.getx() + 3][ship3_1.gety()].noShip = false;
 			}
@@ -985,7 +1095,7 @@ void Battlefield::ubdateSetShip()
 			if (ship3_1.gety() > 0)
 				field[ship3_1.getx()][ship3_1.gety() - 1].noShip = false;
 
-			if (ship3_1.gety() < 5 and ship3_1.gety() > 0)
+			if (ship3_1.gety() < 7 and ship3_1.gety() >= 0)
 				field[ship3_1.getx()][ship3_1.gety() + 3].noShip = false;
 		}
 
@@ -996,7 +1106,7 @@ void Battlefield::ubdateSetShip()
 				field[ship3_2.getx() - 1][ship3_2.gety()].noShip = false;
 
 			}
-			if (ship3_2.getx() < 5 and ship3_2.getx() > 0)
+			if (ship3_2.getx() < 7 and ship3_2.getx() >= 0)
 			{
 				field[ship3_2.getx() + 3][ship3_2.gety()].noShip = false;
 			}
@@ -1006,17 +1116,17 @@ void Battlefield::ubdateSetShip()
 			if (ship3_2.gety() > 0)
 				field[ship3_2.getx()][ship3_2.gety() - 1].noShip = false;
 
-			if (ship3_2.gety() < 5 and ship3_2.gety() > 0)
+			if (ship3_2.gety() < 7 and ship3_2.gety() >= 0)
 				field[ship3_2.getx()][ship3_2.gety() + 3].noShip = false;
 		}
 		#pragma endregion
 	}
 
-	if ((Ship::get_CountShip_3() == 3 and Ship::get_CountShip_3() <= 3 ) or (Ship::get_CountShip_3() == 2 and Ship::get_CountShip_4() == 1 and Ship::get_CountShip_3() <= 3) )
+	if ((Ship::get_CountShip_3() == 3) or (Ship::get_CountShip_3() == 2 and Ship::get_CountShip_4() == 1) )
 	{
-	
 		#pragma region 2_ship
-		 
+		
+
 		if (ship2_1.getVerticalShip())
 		{
 			if (ship2_1.getx() > 0)
@@ -1024,7 +1134,7 @@ void Battlefield::ubdateSetShip()
 				field[ship2_1.getx() - 1][ship2_1.gety()].noShip = false;
 
 			}
-			if (ship2_1.getx() < 3 and ship2_1.getx() > 0)
+			if (ship2_1.getx() < 8 and ship2_1.getx() >= 0)
 			{
 				field[ship2_1.getx() + 2][ship2_1.gety()].noShip = false;
 			}
@@ -1034,7 +1144,7 @@ void Battlefield::ubdateSetShip()
 			if (ship2_1.gety() > 0)
 				field[ship2_1.getx()][ship2_1.gety() - 1].noShip = false;
 
-			if (ship2_1.gety() < 3 and ship2_1.gety() > 0)
+			if (ship2_1.gety() < 8 and ship2_1.gety() >= 0)
 				field[ship2_1.getx()][ship2_1.gety() + 2].noShip = false;
 		}
 
@@ -1045,7 +1155,7 @@ void Battlefield::ubdateSetShip()
 				field[ship2_2.getx() - 1][ship2_2.gety()].noShip = false;
 
 			}
-			if (ship2_2.getx() < 3 and ship2_2.getx() > 0)
+			if (ship2_2.getx() < 8 and ship2_2.getx() >= 0)
 			{
 				field[ship2_2.getx() + 2][ship2_2.gety()].noShip = false;
 			}
@@ -1055,7 +1165,7 @@ void Battlefield::ubdateSetShip()
 			if (ship2_2.gety() > 0)
 				field[ship2_2.getx()][ship2_2.gety() - 1].noShip = false;
 
-			if (ship2_2.gety() < 3 and ship2_2.gety() > 0)
+			if (ship2_2.gety() < 8 and ship2_2.gety() >= 0)
 				field[ship2_2.getx()][ship2_2.gety() + 2].noShip = false;
 		}
 
@@ -1066,7 +1176,7 @@ void Battlefield::ubdateSetShip()
 				field[ship2_3.getx() - 1][ship2_3.gety()].noShip = false;
 
 			}
-			if (ship2_3.getx() < 3 and ship2_3.getx() > 0)
+			if (ship2_3.getx() < 8 and ship2_3.getx() >= 0)
 			{
 				field[ship2_3.getx() + 2][ship2_3.gety()].noShip = false;
 			}
@@ -1076,21 +1186,195 @@ void Battlefield::ubdateSetShip()
 			if (ship2_3.gety() > 0)
 				field[ship2_3.getx()][ship2_3.gety() - 1].noShip = false;
 
-			if (ship2_3.gety() < 3 and ship2_3.gety() > 0)
+			if (ship2_3.gety() < 8 and ship2_3.gety() >= 0)
 				field[ship2_3.getx()][ship2_3.gety() + 2].noShip = false;
 		}
 
 
 		#pragma endregion
 	}
-	
-	
-	
+
+	if ((Ship::get_CountShip_3() == 3 and Ship::get_CountShip_2() == 3) or (Ship::get_CountShip_3() == 2 and Ship::get_CountShip_4() == 1 and Ship::get_CountShip_2() == 3) or Ship::get_CountShip_2() == 6)
+	{
+		#pragma region 1_ship
+
+
+		if (ship1_1.getVerticalShip())
+		{
+			if (ship1_1.getx() > 0)
+			{
+				field[ship1_1.getx() - 1][ship1_1.gety()].noShip = false;
+
+			}
+			if (ship1_1.getx() < 9 and ship1_1.getx() >= 0)
+			{
+				field[ship1_1.getx() + 1][ship1_1.gety()].noShip = false;
+			}
+
+			if (ship1_1.gety() > 0)
+				field[ship1_1.getx()][ship1_1.gety() - 1].noShip = false;
+
+			if (ship1_1.gety() < 9 and ship1_1.gety() >= 0)
+				field[ship1_1.getx()][ship1_1.gety() + 1].noShip = false;
+		}
+
+		if (ship1_2.getVerticalShip())
+		{
+			if (ship1_2.getx() > 0)
+			{
+				field[ship1_2.getx() - 1][ship1_2.gety()].noShip = false;
+
+			}
+			if (ship1_2.getx() < 9 and ship1_2.getx() >= 0)
+			{
+				field[ship1_2.getx() + 1][ship1_2.gety()].noShip = false;
+			}
+			if (ship1_2.gety() > 0)
+				field[ship1_2.getx()][ship1_2.gety() - 1].noShip = false;
+
+			if (ship1_2.gety() < 9 and ship1_2.gety() >= 0)
+				field[ship1_2.getx()][ship1_2.gety() + 1].noShip = false;
+		}
+
+		if (ship1_3.getVerticalShip())
+		{
+			if (ship1_3.getx() > 0)
+			{
+				field[ship1_3.getx() - 1][ship1_3.gety()].noShip = false;
+
+			}
+			if (ship1_3.getx() < 9 and ship1_3.getx() >= 0)
+			{
+				field[ship1_3.getx() + 1][ship1_3.gety()].noShip = false;
+			}
+
+			if (ship1_3.gety() > 0)
+				field[ship1_3.getx()][ship1_3.gety() - 1].noShip = false;
+
+			if (ship1_3.gety() < 9 and ship1_3.gety() >= 0)
+				field[ship1_3.getx()][ship1_3.gety() + 1].noShip = false;
+		}
+
+		if (ship1_4.getVerticalShip())
+		{
+			if (ship1_4.getx() > 0)
+			{
+				field[ship1_4.getx() - 1][ship1_4.gety()].noShip = false;
+
+			}
+			if (ship1_4.getx() < 9 and ship1_4.getx() >= 0)
+			{
+				field[ship1_4.getx() + 1][ship1_4.gety()].noShip = false;
+			}
+
+			if (ship1_4.gety() > 0)
+				field[ship1_4.getx()][ship1_4.gety() - 1].noShip = false;
+
+			if (ship1_4.gety() < 9 and ship1_4.gety() >= 0)
+				field[ship1_4.getx()][ship1_4.gety() + 1].noShip = false;
+		}
+
+
+#pragma endregion
+	}
+
 
 }
 
-void Battlefield::ubdateShip1(Ship& ship)
+void Battlefield::autoSet()
 {
+	ship4.creatShip(0, 0, true, 4);
+
+	ship3_1.creatShip(3, 4, false, 3);
+	ship3_2.creatShip(0, 9, true, 3);
+
+	ship2_1.creatShip(7, 4, false, 2);
+	ship2_2.creatShip(8, 8, false, 2);
+	ship2_3.creatShip(0, 5, true,  2);
+
+	ship1_1.creatShip(5, 5, true, 1);
+	ship1_2.creatShip(5, 3, true, 1);
+	ship1_3.creatShip(9, 0, true, 1);
+	ship1_4.creatShip(7, 0, true, 1);
 
 
+	
+	field[ship4.getx()][ship4.gety()].ship = true;
+	field[ship4.getx() + 1][ship4.gety()].ship = true;
+	field[ship4.getx() + 2][ship4.gety()].ship = true;
+	field[ship4.getx() + 3][ship4.gety()].ship = true;
+
+	
+	field[ship3_1.getx()][ship3_1.gety()].ship = true;
+	field[ship3_1.getx()][ship3_1.gety() + 1].ship = true;
+	field[ship3_1.getx()][ship3_1.gety() + 2].ship = true;
+
+	field[ship3_2.getx()][ship3_2.gety()].ship = true;
+	field[ship3_2.getx() + 1][ship3_2.gety()].ship = true;
+	field[ship3_2.getx() + 2][ship3_2.gety()].ship = true;
+
+	field[ship2_1.getx()][ship2_1.gety()].ship = true;
+	field[ship2_1.getx()][ship2_1.gety() + 1].ship = true;
+	
+	field[ship2_2.getx()][ship2_2.gety()].ship = true;
+	field[ship2_2.getx()][ship2_2.gety() + 1].ship = true;
+
+	field[ship2_3.getx()][ship2_3.gety()].ship = true;
+	field[ship2_3.getx() + 1][ship2_3.gety()].ship = true;
+
+	field[ship1_1.getx()][ship1_1.gety()].ship = true;
+	field[ship1_2.getx()][ship1_2.gety()].ship = true;
+	field[ship1_3.getx()][ship1_3.gety()].ship = true;
+	field[ship1_4.getx()][ship1_4.gety()].ship = true;
+	
+
+
+
+	
+
+
+}
+
+void Battlefield::clear()
+{
+	for (int x = 0; x < 10; x++)
+	{
+		for (int y = 0; y < 10; y++)
+		{
+			field[x][y].ship = false;
+			field[x][y].noShip = true;
+		}
+	}
+
+	Ship::set_CountShip(0);
+	Ship::set_CountShip_1(0);
+	Ship::set_CountShip_2(0);
+	Ship::set_CountShip_3(0);
+	Ship::set_CountShip_4(0);
+	ship1_1.deleteShip();
+	ship1_2.deleteShip();
+	ship1_3.deleteShip();
+	ship1_4.deleteShip();
+	ship1_5.deleteShip();
+	ship1_6.deleteShip();
+	ship1_7.deleteShip();
+	ship1_8.deleteShip();
+	ship1_9.deleteShip();
+	ship1_10.deleteShip();
+	ship1_11.deleteShip();
+	ship1_12.deleteShip();
+	ship1_13.deleteShip();
+
+	ship2_1.deleteShip();
+	ship2_2.deleteShip();
+	ship2_3.deleteShip();
+	ship2_4.deleteShip();
+	ship2_5.deleteShip();
+	ship2_6.deleteShip();
+
+	ship3_1.deleteShip();
+	ship3_2.deleteShip();
+	ship3_3.deleteShip();
+
+	ship4.deleteShip();
 }

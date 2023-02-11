@@ -11,8 +11,8 @@ GameWindow::GameWindow()
 	//name and setings window
 	this->window = new sf::RenderWindow(videoMode, "Batle Ship", sf::Style::Titlebar | sf::Style::Close);
 
-	batlefield = new Battlefield(40, 70, "Player");
-	batlefieldEnemy = new Battlefield(650, 70, "Enemy");
+	batlefield = new Battlefield(40, 70, "Player", false);
+	batlefieldEnemy = new Battlefield(650, 70, "Enemy", true);
 	menu = new Main_menu;
 }
 
@@ -51,7 +51,34 @@ void GameWindow::pollEventWindow()
 
 		menu->clickEvent(*this);
 		//Ather event
-		batlefield->clickEvent(*this);
+		if (menu->get_manual_spacation())
+		{
+			batlefield->clickEvent(*this);
+		}
+		if (menu->get_auto())
+		{
+			batlefield->clear();
+			batlefield->autoSet();
+			menu->set_auto(false);
+		}
+
+		if (menu->get_clear())
+		{
+			batlefield->clear();
+			menu->set_clear(false);
+		}
+		if (menu->get_save())
+		{
+			batlefieldEnemy->autoSet();
+			Ship::set_CountShip(Ship::get_CountShip() - 10);
+
+			Ship::set_CountShip_1(Ship::get_CountShip_1() - 4);
+			Ship::set_CountShip_2(Ship::get_CountShip_2() - 3);
+			Ship::set_CountShip_3(Ship::get_CountShip_3() - 2);
+			Ship::set_CountShip_4(Ship::get_CountShip_4() - 1);
+			menu->set_save(false);
+		}
+
 
 	}
 }

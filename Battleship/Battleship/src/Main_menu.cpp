@@ -2,6 +2,7 @@
 
 
 Main_menu::Main_menu()
+	: auto_b(false), manual_spacation_b(false), clear_b(false), save_b(false), next_b(false), restart_b(false)
 {
 	b_menu = new Button("Menu", { 220,100 }, 80, sf::Color(30, 30, 30), sf::Color::White);
 
@@ -130,13 +131,23 @@ void Main_menu::clickEvent(GameWindow& w)
 		else if (menu_type == 1)
 		{
 			if (b_auto->isMouseOver(*w.window))
+			{
 				menu_type = 3;
+				auto_b = true;
+			}
 
 			else if (b_manual_spacation->isMouseOver(*w.window))
+			{
 				menu_type = 2;
+				manual_spacation_b = true;
+			}
 
 			else if (b_back->isMouseOver(*w.window))
+			{
 				menu_type = 0;
+				manual_spacation_b = false;
+				auto_b = false;
+			}
 		}
 		//Set Menu manual_spacation
 		else if (menu_type == 2)
@@ -144,17 +155,23 @@ void Main_menu::clickEvent(GameWindow& w)
 			if (b_clear->isMouseOver(*w.window))
 			{
 				std::cout << "clear";
+				clear_b = true;
 
 			}
 
 			else if (b_save->isMouseOver(*w.window))
 			{
 				std::cout << "Save";
+				manual_spacation_b = false;
+				save_b = true;
 				menu_type = 4;
 			}
 
 			else if (b_back_m->isMouseOver(*w.window))
+			{
+				manual_spacation_b = false;
 				menu_type = 1;
+			}
 		}
 
 		//Set Menu auto
@@ -163,16 +180,22 @@ void Main_menu::clickEvent(GameWindow& w)
 			if (b_next->isMouseOver(*w.window))
 			{
 				std::cout << "Next";
+				auto_b = true;
+				next_b = true;
 			}
 
 			else if (b_save->isMouseOver(*w.window))
 			{
 				std::cout << "Save";
+				save_b = true;
 				menu_type = 4;
 			}
 
 			else if (b_back_m->isMouseOver(*w.window))
+			{
 				menu_type = 1;
+				auto_b = false;
+			}
 		}
 
 		//Battle menu
@@ -181,10 +204,16 @@ void Main_menu::clickEvent(GameWindow& w)
 			//text////////////////////
 
 			if (b_restart->isMouseOver(*w.window))
+			{
 				std::cout << "Restart";
+				restart_b = true;
+			}
 
 			else if (b_exit_to_menu->isMouseOver(*w.window))
+			{
 				menu_type = 0;
+				restart_b = next_b = save_b = clear_b = manual_spacation_b = auto_b = false;
+			}
 		}
 	}	
 }
@@ -310,4 +339,15 @@ void Main_menu::draw(GameWindow& w)
 #pragma endregion
 
 }
+
+void Main_menu::set_auto(bool auto_b)
+{
+	this->auto_b = auto_b;
+}
+
+void Main_menu::set_clear(bool clear_b)
+{
+	this->clear_b = clear_b;
+}
+
 int Main_menu::menu_type;

@@ -259,10 +259,6 @@ void  Ship::move_ship_1(Ship& ship1, Ship& ship2, Ship& ship3, Ship& ship4, Ship
 	}
 }
 
-
-
-
-
 void Ship::Ship_info()
 {
 	std::cout << "x ->\t" << x << std::endl;
@@ -499,6 +495,15 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3)
 	}
 }
 
+bool Ship::if_count_ship1_(int x, int  y)
+{
+	return (y == this->y and x == this->x + 1) or
+		(y == this->y and x == this->x + 2) or
+		(y == this->y and x == this->x + 3) or
+		(y == this->y and x == this->x - 1) or
+		(y == this->y and x == this->x - 2) or
+		(y == this->y and x == this->x - 3);
+}
 
 int Ship::count_ship;
 int Ship::count_ship_1;

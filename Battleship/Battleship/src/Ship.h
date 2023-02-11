@@ -57,7 +57,9 @@ public:
 
 	static void delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3);
 
-
+	bool if_count_ship1_(int x, int  y);
+	
+	void deleteShip();
 private:
 	int x;
 	int y;
@@ -76,5 +78,4 @@ private:
 
 
 	bool ship_x_y(int x, int y);
-	void deleteShip();
 };

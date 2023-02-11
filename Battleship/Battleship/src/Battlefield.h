@@ -13,7 +13,7 @@ class Battlefield
 public:
 	
 	Battlefield();
-	Battlefield(float x, float y, sf::String string);
+	Battlefield(float x, float y, sf::String string, bool enemy);
 
 	~Battlefield();
 
@@ -36,14 +36,17 @@ public:
 	//updating boats when you put them on the field
 	void ubdateSetShip();
 
-	void ubdateShip1(Ship& ship);
-
 	
-		
+	void autoSet();
+
+	void clear();
+
 private:
 
 	float x;
 	float y;
+
+	bool enemy;
 
 	//Text
 	sf::Text* ABC;
