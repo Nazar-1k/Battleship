@@ -101,6 +101,8 @@ The advantage of my development is the creation of boats, here I analyzed all po
 # When will be the final result
 Never...., you need to respect your time and not stay in the same place.
 
-if anyone wants to continue my creation good luck.
+if anyone wants to continue my creation. 
+
+Good luck.
 
 										
