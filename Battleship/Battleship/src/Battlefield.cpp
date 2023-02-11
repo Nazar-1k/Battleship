@@ -1,7 +1,7 @@
 #include "Battlefield.h"
 
 Battlefield::Battlefield()
-	:x(0), y(0)
+	:x(0), y(0), count_field(0)
 {
 	initField(x, y);
 	initBattlefield(x - 2, y - 2);
@@ -10,7 +10,7 @@ Battlefield::Battlefield()
 }
 
 Battlefield::Battlefield(float x, float y, sf::String string)
-	:x(x), y(y)
+	:x(x), y(y), count_field(0)
 {
 	initField(x, y);
 	initBattlefield(x - 2, y - 2);
@@ -292,16 +292,17 @@ void Battlefield::clickEvent(GameWindow& w)
 {
 	if (w.event.type == sf::Event::MouseButtonReleased)
 	{
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		for (int x = 0; x < 10; x++)
 		{
 			for (int y = 0; y < 10; y++)
 			{
-				if (field[x][y].cursorIsGiven == true and Ship::get_CountShip() < 20 and field[x][y].noShip == true and field[x][y].ship == false)
+				if (field[x][y].cursorIsGiven == true and count_field < 20 and field[x][y].noShip == true and field[x][y].ship == false)
 				{
 					field[x][y].ship = true;
-					std::cout << "Count ship = "<<Ship::get_CountShip() << std::endl;
+					count_field++;
+					/*std::cout << "Count ship = "<<Ship::get_CountShip() << std::endl;*/
 
-					ship1_1.Ship_info();
 					#pragma region All_options_for_creating_ship
 										//All_options_for_creating_ship 
 										// 
@@ -413,8 +414,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						fourth_option_creat_4_deck_ship_horizontally and
 						Ship::get_CountShip_4() < 1)
 					{
-						std::cout << "Creat 4 Ship novertical" << std::endl;\
-
+						/*std::cout << "Creat 4 Ship novertical" << std::endl;*/
 					#pragma region remove_ship
 						if (first_option_creat_4_deck_ship_horizontally)
 						{
@@ -427,8 +427,8 @@ void Battlefield::clickEvent(GameWindow& w)
 						}
 						else if (third_option_creat_4_deck_ship_horizontally)
 						{
-							Ship::delete_used_ship(x, y - 2, ship2_1, ship2_2, ship2_3, ship2_4, ship2_5, ship2_6);
-							Ship::delete_used_ship(x, y + 1, ship1_1, ship1_2, ship1_3, ship1_4, ship1_5, ship1_6, ship1_7, ship1_8, ship1_9, ship1_10, ship1_11, ship1_12, ship1_13);
+							Ship::delete_used_ship(x, y + 2, ship2_1, ship2_2, ship2_3, ship2_4, ship2_5, ship2_6);
+							Ship::delete_used_ship(x, y - 1, ship1_1, ship1_2, ship1_3, ship1_4, ship1_5, ship1_6, ship1_7, ship1_8, ship1_9, ship1_10, ship1_11, ship1_12, ship1_13);
 						}
 						else if (fourth_option_creat_4_deck_ship_horizontally)
 						{
@@ -452,10 +452,10 @@ void Battlefield::clickEvent(GameWindow& w)
 
 						if (fourth_option_creat_4_deck_ship_horizontally)
 							y -= 3;
-						else if (third_option_creat_4_deck_ship_vertically)
-							y -= 1;
-						else if (second_option_creat_4_deck_ship_horizontally)
+						else if (third_option_creat_4_deck_ship_horizontally)
 							y -= 2;
+						else if (second_option_creat_4_deck_ship_horizontally)
+							y -= 1;
 
 					#pragma endregion
 
@@ -477,7 +477,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						third_option_creat_3_deck_ship_horizontally and
 						Ship::get_CountShip_3() < 4)
 					{
-						std::cout << "Creat 3 Ship novertical" << std::endl;
+						/*std::cout << "Creat 3 Ship novertical" << std::endl;*/
 
 						#pragma region remove_ship
 						
@@ -513,9 +513,9 @@ void Battlefield::clickEvent(GameWindow& w)
 						#pragma region setPosition
 
 						if (third_option_creat_3_deck_ship_horizontally)
-							x -= 2;
+							y -= 2;
 						else if (second_option_creat_3_deck_ship_horizontally)
-							x -= 1;
+							y -= 1;
 
 						#pragma endregion
 
@@ -547,7 +547,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						second_option_creat_2_deck_ship_horizontally and
 						Ship::get_CountShip_2() < 6)
 					{
-						std::cout << "Creat 2 Ship novertical" << std::endl;
+						/*std::cout << "Creat 2 Ship novertical" << std::endl;*/
 
 						#pragma region remote_ship
 
@@ -619,7 +619,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						fourth_option_creat_4_deck_ship_vertically and
 						Ship::get_CountShip_4() < 1)
 					{
-						std::cout << "Creat 4 Ship vertical" << std::endl;
+						/*std::cout << "Creat 4 Ship vertical" << std::endl;*/
 
 						#pragma region remove_ship
 						if (first_option_creat_4_deck_ship_vertically)
@@ -653,7 +653,7 @@ void Battlefield::clickEvent(GameWindow& w)
 							Ship::set_CountShip_2(Ship::get_CountShip_2() - 1);
 						}
 						#pragma endregion
-
+						
 						#pragma region setPosition
 
 						if (first_option_creat_4_deck_ship_vertically)
@@ -683,7 +683,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						third_option_creat_3_deck_ship_vertically and
 						Ship::get_CountShip_3() < 3)
 					{
-						std::cout << "Creat 3 Ship vertical" << std::endl;
+						/*std::cout << "Creat 3 Ship vertical" << std::endl;*/
 
 						#pragma region remove_ship
 						if (first_option_creat_3_deck_ship_vertically)
@@ -740,7 +740,6 @@ void Battlefield::clickEvent(GameWindow& w)
 
 						#pragma endregion
 
-
 						return;
 					}
 
@@ -749,7 +748,7 @@ void Battlefield::clickEvent(GameWindow& w)
 						second_option_creat_2_deck_ship_vertically and
 						Ship::get_CountShip_2() < 6)
 					{
-						std::cout << "Creat 2 Ship vertical"<< std::endl;
+						/*std::cout << "Creat 2 Ship vertical"<< std::endl;*/
 
 						#pragma region remove_ship
 						if (first_option_creat_2_deck_ship_vertically)
@@ -815,7 +814,7 @@ void Battlefield::clickEvent(GameWindow& w)
 					else if (option_creat_1_deck_ship and
 						Ship::get_CountShip_1() <= 13)
 					{
-						std::cout << "Creat 1 Ship -> " << std::endl;
+						/*std::cout << "Creat 1 Ship -> " << std::endl;*/
 						#pragma region creatShip
 
 						if (ship1_1.ship_exist())
@@ -894,13 +893,14 @@ void Battlefield::clickEvent(GameWindow& w)
 
 void Battlefield::ubdateSetShip()
 {
+	ship4.Ship_info();
 	for (int x = 0; x < 10; x++)
 	{
 		for (int y = 0; y < 10; y++)
 		{
 			#pragma region Prohibition_to_place_boats_diagonally
 			//Prohibition to place boats diagonally
-			if (x==0 and y == 0 and field[x][y].ship == true)//upper right corner
+			if (x == 0 and y == 0 and field[x][y].ship == true)//upper right corner
 			{
 				field[x + 1][y + 1].noShip = false;
 			}
@@ -937,15 +937,156 @@ void Battlefield::ubdateSetShip()
 				field[x - 1][y + 1].noShip = false;
 			}
 			#pragma endregion
-
-			if (Ship::get_CountShip_4() == 1)
-			{
-
-			}
-
-
 		}
 	}
+	
+	if (Ship::get_CountShip_4() == 1)
+	{
+		#pragma region 4_ship
+
+		if (ship4.getVerticalShip())
+		{
+			if (ship4.getx() > 0)
+			{
+				field[ship4.getx() - 1][ship4.gety()].noShip = false;
+
+			}
+			if (ship4.getx() < 6 and ship4.getx() >= 0)
+			{
+				field[ship4.getx() + 4][ship4.gety()].noShip = false;
+			}
+		}
+		else 
+		{
+			if (ship4.gety() > 1)
+				field[ship4.getx()][ship4.gety() - 1].noShip = false;
+
+			if (ship4.gety() < 6 and ship4.gety() >= 0)
+				field[ship4.getx()][ship4.gety() + 4].noShip = false;
+		}
+		#pragma endregion
+	
+		#pragma region 3_ship
+
+		if (ship3_1.getVerticalShip())
+		{
+			if (ship3_1.getx() > 1)
+			{
+				field[ship3_1.getx() - 1][ship3_1.gety()].noShip = false;
+
+			}
+			if (ship3_1.getx() < 5 and ship3_1.getx() > 0)
+			{
+				field[ship3_1.getx() + 3][ship3_1.gety()].noShip = false;
+			}
+		}
+		else
+		{
+			if (ship3_1.gety() > 0)
+				field[ship3_1.getx()][ship3_1.gety() - 1].noShip = false;
+
+			if (ship3_1.gety() < 5 and ship3_1.gety() > 0)
+				field[ship3_1.getx()][ship3_1.gety() + 3].noShip = false;
+		}
+
+		if (ship3_2.getVerticalShip())
+		{
+			if (ship3_2.getx() > 0)
+			{
+				field[ship3_2.getx() - 1][ship3_2.gety()].noShip = false;
+
+			}
+			if (ship3_2.getx() < 5 and ship3_2.getx() > 0)
+			{
+				field[ship3_2.getx() + 3][ship3_2.gety()].noShip = false;
+			}
+		}
+		else
+		{
+			if (ship3_2.gety() > 0)
+				field[ship3_2.getx()][ship3_2.gety() - 1].noShip = false;
+
+			if (ship3_2.gety() < 5 and ship3_2.gety() > 0)
+				field[ship3_2.getx()][ship3_2.gety() + 3].noShip = false;
+		}
+		#pragma endregion
+	}
+
+	if ((Ship::get_CountShip_3() == 3 and Ship::get_CountShip_3() <= 3 ) or (Ship::get_CountShip_3() == 2 and Ship::get_CountShip_4() == 1 and Ship::get_CountShip_3() <= 3) )
+	{
+	
+		#pragma region 2_ship
+		 
+		if (ship2_1.getVerticalShip())
+		{
+			if (ship2_1.getx() > 0)
+			{
+				field[ship2_1.getx() - 1][ship2_1.gety()].noShip = false;
+
+			}
+			if (ship2_1.getx() < 3 and ship2_1.getx() > 0)
+			{
+				field[ship2_1.getx() + 2][ship2_1.gety()].noShip = false;
+			}
+		}
+		else
+		{
+			if (ship2_1.gety() > 0)
+				field[ship2_1.getx()][ship2_1.gety() - 1].noShip = false;
+
+			if (ship2_1.gety() < 3 and ship2_1.gety() > 0)
+				field[ship2_1.getx()][ship2_1.gety() + 2].noShip = false;
+		}
+
+		if (ship2_2.getVerticalShip())
+		{
+			if (ship2_2.getx() > 0 )
+			{
+				field[ship2_2.getx() - 1][ship2_2.gety()].noShip = false;
+
+			}
+			if (ship2_2.getx() < 3 and ship2_2.getx() > 0)
+			{
+				field[ship2_2.getx() + 2][ship2_2.gety()].noShip = false;
+			}
+		}
+		else
+		{
+			if (ship2_2.gety() > 0)
+				field[ship2_2.getx()][ship2_2.gety() - 1].noShip = false;
+
+			if (ship2_2.gety() < 3 and ship2_2.gety() > 0)
+				field[ship2_2.getx()][ship2_2.gety() + 2].noShip = false;
+		}
+
+		if (ship2_3.getVerticalShip())
+		{
+			if (ship2_3.getx() > 0)
+			{
+				field[ship2_3.getx() - 1][ship2_3.gety()].noShip = false;
+
+			}
+			if (ship2_3.getx() < 3 and ship2_3.getx() > 0)
+			{
+				field[ship2_3.getx() + 2][ship2_3.gety()].noShip = false;
+			}
+		}
+		else
+		{
+			if (ship2_3.gety() > 0)
+				field[ship2_3.getx()][ship2_3.gety() - 1].noShip = false;
+
+			if (ship2_3.gety() < 3 and ship2_3.gety() > 0)
+				field[ship2_3.getx()][ship2_3.gety() + 2].noShip = false;
+		}
+
+
+		#pragma endregion
+	}
+	
+	
+	
+
 }
 
 void Battlefield::ubdateShip1(Ship& ship)

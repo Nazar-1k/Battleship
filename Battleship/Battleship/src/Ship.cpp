@@ -89,7 +89,179 @@ void Ship::moveShip(Ship& ship)
 
 	this-> verticalShip = ship.verticalShip;
 	this-> show = ship.show;
+
+	ship.deleteShip();
 }
+void  Ship::move_ship_3(Ship& ship1, Ship& ship2, Ship& ship3)
+{
+	if (ship1.ship_exist() and !ship3.ship_exist())
+			ship1.moveShip(ship3);
+	else if(ship2.ship_exist() and !ship3.ship_exist())
+		ship2.moveShip(ship3);
+}
+
+void  Ship::move_ship_2(Ship& ship1, Ship& ship2, Ship& ship3, Ship& ship4, Ship& ship5, Ship& ship6)
+{
+	if (ship1.ship_exist())
+	{
+		if (!ship4.ship_exist())
+			ship1.moveShip(ship4);
+		
+		else if (!ship5.ship_exist())
+			ship1.moveShip(ship5);
+
+		else if (!ship6.ship_exist())
+			ship1.moveShip(ship6);
+	}
+	
+	if (ship2.ship_exist())
+	{
+		if (!ship4.ship_exist())
+			ship2.moveShip(ship4);
+
+		else if (!ship5.ship_exist())
+			ship2.moveShip(ship5);
+
+		else if (!ship6.ship_exist())
+			ship2.moveShip(ship6);
+	}
+
+	if(ship3.ship_exist())
+	{
+		if (!ship4.ship_exist())
+			ship3.moveShip(ship4);
+
+		else if (!ship5.ship_exist())
+			ship3.moveShip(ship5);
+
+		else if (!ship6.ship_exist())
+			ship3.moveShip(ship6);
+	}
+}
+
+void  Ship::move_ship_1(Ship& ship1, Ship& ship2, Ship& ship3, Ship& ship4, Ship& ship5, Ship& ship6, Ship& ship7, Ship& ship8, Ship& ship9, Ship& ship10, Ship& ship11, Ship& ship12, Ship& ship13)
+{
+	if (ship1.ship_exist())
+	{
+		if (!ship5.ship_exist())
+			ship1.moveShip(ship5);
+
+		else if (!ship6.ship_exist())
+			ship1.moveShip(ship6);
+		
+		else if (!ship7.ship_exist())
+			ship1.moveShip(ship7);
+
+		else if (!ship8.ship_exist())
+			ship1.moveShip(ship8);
+
+		else if (!ship9.ship_exist())
+			ship1.moveShip(ship9);
+
+		else if (!ship10.ship_exist())
+			ship1.moveShip(ship10);
+
+		else if (!ship11.ship_exist())
+			ship1.moveShip(ship11);
+
+		else if (!ship12.ship_exist())
+			ship1.moveShip(ship12);
+
+		else if (!ship13.ship_exist())
+			ship1.moveShip(ship13);
+	}
+	if (ship2.ship_exist())
+	{
+		if (!ship5.ship_exist())
+			ship2.moveShip(ship5);
+
+		else if (!ship6.ship_exist())
+			ship2.moveShip(ship6);
+
+		else if (!ship7.ship_exist())
+			ship2.moveShip(ship7);
+
+		else if (!ship8.ship_exist())
+			ship2.moveShip(ship8);
+
+		else if (!ship9.ship_exist())
+			ship2.moveShip(ship9);
+
+		else if (!ship10.ship_exist())
+			ship2.moveShip(ship10);
+
+		else if (!ship11.ship_exist())
+			ship2.moveShip(ship11);
+
+		else if (!ship12.ship_exist())
+			ship2.moveShip(ship12);
+
+		else if (!ship13.ship_exist())
+			ship2.moveShip(ship13);
+	}
+	if (ship3.ship_exist())
+	{
+		if (!ship5.ship_exist())
+			ship3.moveShip(ship5);
+
+		else if (!ship6.ship_exist())
+			ship3.moveShip(ship6);
+
+		else if (!ship7.ship_exist())
+			ship3.moveShip(ship7);
+
+		else if (!ship8.ship_exist())
+			ship3.moveShip(ship8);
+
+		else if (!ship9.ship_exist())
+			ship3.moveShip(ship9);
+
+		else if (!ship10.ship_exist())
+			ship3.moveShip(ship10);
+
+		else if (!ship11.ship_exist())
+			ship3.moveShip(ship11);
+
+		else if (!ship12.ship_exist())
+			ship3.moveShip(ship12);
+
+		else if (!ship13.ship_exist())
+			ship3.moveShip(ship13);
+	}
+	if (ship4.ship_exist())
+	{
+		if (!ship5.ship_exist())
+			ship4.moveShip(ship5);
+
+		else if (!ship6.ship_exist())
+			ship4.moveShip(ship6);
+
+		else if (!ship7.ship_exist())
+			ship4.moveShip(ship7);
+
+		else if (!ship8.ship_exist())
+			ship4.moveShip(ship8);
+
+		else if (!ship9.ship_exist())
+			ship4.moveShip(ship9);
+
+		else if (!ship10.ship_exist())
+			ship4.moveShip(ship10);
+
+		else if (!ship11.ship_exist())
+			ship4.moveShip(ship11);
+
+		else if (!ship12.ship_exist())
+			ship4.moveShip(ship12);
+
+		else if (!ship13.ship_exist())
+			ship4.moveShip(ship13);
+	}
+}
+
+
+
+
 
 void Ship::Ship_info()
 {
@@ -124,6 +296,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship1.ship_x_y(x, y))
 		{
 			ship1.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -132,6 +305,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship2.ship_x_y(x, y))
 		{
 			ship2.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -140,6 +314,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship3.ship_x_y(x, y))
 		{
 			ship3.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -148,6 +323,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship4.ship_x_y(x, y))
 		{
 			ship4.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -156,6 +332,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship5.ship_x_y(x, y))
 		{
 			ship5.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -164,6 +341,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship6.ship_x_y(x, y))
 		{
 			ship6.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -172,6 +350,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship7.ship_x_y(x, y))
 		{
 			ship7.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -180,6 +359,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship8.ship_x_y(x, y))
 		{
 			ship8.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -188,6 +368,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship9.ship_x_y(x, y))
 		{
 			ship9.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -196,6 +377,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship10.ship_x_y(x, y))
 		{
 			ship10.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -204,6 +386,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship11.ship_x_y(x, y))
 		{
 			ship11.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -212,6 +395,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship12.ship_x_y(x, y))
 		{
 			ship12.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -220,6 +404,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship13.ship_x_y(x, y))
 		{
 			ship13.deleteShip();
+			move_ship_1(ship1, ship2, ship3, ship4, ship5, ship6, ship7, ship8, ship9, ship10, ship11, ship12, ship13);
 			return;
 		}
 	}
@@ -232,6 +417,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship1.ship_x_y(x, y))
 		{
 			ship1.deleteShip();
+			move_ship_2(ship1, ship2, ship3, ship4, ship5, ship6);
 			return;
 		}
 	}
@@ -240,6 +426,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship2.ship_x_y(x, y))
 		{
 			ship2.deleteShip();
+			move_ship_2(ship1, ship2, ship3, ship4, ship5, ship6);
 			return;
 		}
 	}
@@ -248,6 +435,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship3.ship_x_y(x, y))
 		{
 			ship3.deleteShip();
+			move_ship_2(ship1, ship2, ship3, ship4, ship5, ship6);
 			return;
 		}
 	}
@@ -256,6 +444,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship4.ship_x_y(x, y))
 		{
 			ship4.deleteShip();
+			move_ship_2(ship1, ship2, ship3, ship4, ship5, ship6);
 			return;
 		}
 	}
@@ -264,6 +453,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship5.ship_x_y(x, y))
 		{
 			ship5.deleteShip();
+			move_ship_2(ship1, ship2, ship3, ship4, ship5, ship6);
 			return;
 		}
 	}
@@ -272,6 +462,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3,
 		if (ship6.ship_x_y(x, y))
 		{
 			ship6.deleteShip();
+			move_ship_2(ship1, ship2, ship3, ship4, ship5, ship6);
 			return;
 		}
 	}
@@ -284,6 +475,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3)
 		if (ship1.ship_x_y(x, y))
 		{
 			ship1.deleteShip();
+			move_ship_3(ship1, ship2, ship3);
 			return;
 		}
 	}
@@ -292,6 +484,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3)
 		if (ship2.ship_x_y(x, y))
 		{
 			ship2.deleteShip();
+			move_ship_3(ship1, ship2, ship3);
 			return;
 		}
 	}
@@ -300,6 +493,7 @@ void Ship::delete_used_ship(int x, int y, Ship& ship1, Ship& ship2, Ship& ship3)
 		if (ship3.ship_x_y(x, y))
 		{
 			ship3.deleteShip();
+			move_ship_3(ship1, ship2, ship3);
 			return;
 		}
 	}

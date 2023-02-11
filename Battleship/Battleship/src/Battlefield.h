@@ -93,7 +93,7 @@ private:
 
 	Ship ship4;
 
-
+	int count_field;
 
 	void initBattlefield(float x_, float y_);
 

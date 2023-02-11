@@ -41,6 +41,12 @@ public:
 
 	void moveShip(Ship& ship);
 
+	static void move_ship_3(Ship& ship1, Ship& ship2, Ship& ship3);
+
+	static void move_ship_2(Ship& ship1, Ship& ship2, Ship& ship3, Ship& ship4, Ship& ship5, Ship& ship6);
+
+	static void move_ship_1(Ship& ship1, Ship& ship2, Ship& ship3, Ship& ship4, Ship& ship5, Ship& ship6, Ship& ship7, Ship& ship8, Ship& ship9, Ship& ship10, Ship& ship11, Ship& ship12, Ship& ship13);
+
 	void Ship_info();
 
 	bool ship_exist();
